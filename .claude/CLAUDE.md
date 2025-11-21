@@ -40,12 +40,46 @@ Architectural and technical decisions are documented in `.claude/decisions/` wit
 
 *(To be populated as project evolves)*
 
+## Domain Understanding
+
+### What is UBL?
+Universal Business Language (OASIS standard) - "HTML for business documents"
+- Royalty-free XML standard for business document exchange
+- Based on UN/CEFACT CCTS 2.01 (Core Components Technical Specification)
+- Uses ISO/IEC 11179 naming conventions
+- Currently at version 2.4, working towards 2.5
+
+### Current Source of Truth
+Three Google Sheets maintained by TC:
+- **Library**: https://docs.google.com/spreadsheets/d/18o1YqjHWUw0-s8mb3ja4i99obOUhs-4zpgso6RZrGaY
+- **Documents**: https://docs.google.com/spreadsheets/d/1024Th-Uj8cqliNEJc-3pDOR7DxAAW7gCG4e-pbtarsg
+- **Signatures**: https://docs.google.com/spreadsheets/d/1T6z2NZ4mc69YllZOXE5TnT5Ey-FlVtaXN1oQ4AIMp7g
+
+### Publishing Pipeline
+Google Sheets → ODS → GeneriCode (GC) XML → XSD/JSON Schemas → Documentation
+- Automated via GitHub Actions: https://github.com/oasis-tcs/ubl/blob/ubl-2.5/README.md
+- Uses `ident-UBL.xml` and `config-UBL.xml` for transformations
+
+### The Problem
+- Difficult to track changes in Google Sheets
+- Hard to coordinate among multiple TC editors
+- No visualization of model structure
+- No formal approval workflow
+
+### The Solution Vision
+Website that:
+1. Replaces Google Sheets as authoritative source
+2. Provides change tracking and version control
+3. Visualizes model structure and relationships
+4. Helps TC members edit and maintain the model
+5. Exports GeneriCode (GC) files for existing publishing pipeline
+
 ## Open Questions
 
-- What is UBL and how is it currently maintained?
-- What are GC files and their relationship to the model?
-- Who are the intended users?
-- What technology stack will be used?
+- Who are all the intended users (editors, viewers, implementers)?
+- What technology stack should be used?
+- How to handle authentication and permissions?
+- Deployment strategy and hosting?
 
 ---
 *Last Updated: 2025-11-21*
