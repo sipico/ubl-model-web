@@ -1,0 +1,27 @@
+# Analysis data and temporary files
+*/data/*
+!*/data/.gitkeep
+
+# Large exports
+*.csv
+*.json
+*.xml
+
+# Sensitive information
+*credentials*
+*secrets*
+*api-keys*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+package-lock.json
+
+# OS
+.DS_Store
+Thumbs.db
