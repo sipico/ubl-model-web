@@ -1,39 +1,27 @@
-# Questions for Other Personas
+# ⚠️ DEPRECATED - Use SHARED-QUESTIONS.md Instead
 
-This file facilitates asynchronous communication between AI personas working on different analyses. Each persona works independently, like a distributed team across time zones.
+**This file is no longer used.**
 
-## How to Use This File
+All cross-persona questions now go in **`analysis/SHARED-QUESTIONS.md`** - the single source of truth for all questions between personas.
 
-When you need input from another domain:
+## Why the Change?
 
-1. **Add your question below** using the template
-2. **Continue your work** with reasonable assumptions
-3. **Document your assumptions** in your deliverables
-4. **Mark dependencies** clearly
+Individual questions files created silos. A shared document provides:
+- ✅ Single source of truth
+- ✅ Better coordination across all analyses
+- ✅ Ability to track question status (OPEN, IN PROGRESS, ANSWERED)
+- ✅ No duplication of similar questions
 
-The AR Manager or project lead will route questions and coordinate responses.
+## How to Use SHARED-QUESTIONS.md
 
----
+1. **Open** `analysis/SHARED-QUESTIONS.md`
+2. **Add your question** using the template provided there
+3. **Set status** to "🔴 OPEN"
+4. **Assign a question number** (e.g., Q5)
+5. **Reference it** in your deliverables: "See SHARED-QUESTIONS.md Q#5"
 
-## Template
-
-```markdown
-## For: [Persona/Analysis Name]
-
-**From**: [Your Persona/Analysis]
-**Date**: YYYY-MM-DD
-
-**Question**: [Clear, specific question]
-
-**Why it matters**: [How this impacts your work]
-
-**Current assumption**: [What you're assuming for now]
-
-**Impact if wrong**: [What would need to change]
-```
+The AR Manager monitors SHARED-QUESTIONS.md and routes questions to appropriate personas.
 
 ---
 
-## Questions
-
-<!-- Add your questions below -->
+**For full details**, see the "Cross-Persona Communication" section in `analysis/AR-MANAGER.md`.

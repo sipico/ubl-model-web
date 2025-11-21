@@ -89,29 +89,42 @@ Each prompt includes:
 
 ## Cross-Persona Communication
 
+### Using the Shared Questions Document
+
+All personas use **`analysis/SHARED-QUESTIONS.md`** as the single source of truth for cross-persona questions. This replaces individual `questions-for-other-personas.md` files in each task directory.
+
 ### Requesting Input from Another Persona
 
 When a persona needs input from another domain:
 
-1. **Document the Question**
-   - Create or append to `questions-for-other-personas.md` in your directory
+1. **Add Question to Shared Document**
+   - Add to `analysis/SHARED-QUESTIONS.md`
+   - Use the provided template with question number
+   - Set status to "🔴 OPEN"
    - Clearly state: WHO you need input from, WHAT you need, WHY it matters
 
 2. **Continue with Assumptions**
    - Don't block your work entirely
    - Make reasonable assumptions
-   - Document those assumptions clearly
-   - Mark them as "TO VALIDATE with [persona]"
+   - Document those assumptions clearly in your deliverables
+   - Reference the question: "See SHARED-QUESTIONS.md Q#3"
 
 3. **Flag Dependencies**
    - In your final deliverables, highlight dependencies
-   - Note what might change based on other work
+   - Note what might change based on other answers
+   - Link to specific questions in SHARED-QUESTIONS.md
 
 ### Example Communication Pattern
 
-**In `analysis/data-model-design/questions-for-other-personas.md`**:
+**In `analysis/SHARED-QUESTIONS.md`**:
 ```markdown
-## For: UX Researcher / User Workflows
+### Q3: Cross-ABIE Search Frequency
+
+**Status**: 🔴 OPEN
+**For**: UX Researcher / User Workflows
+**From**: Data Model Design / Database Architect
+**Date**: 2025-11-21
+**Priority**: High
 
 **Question**: How frequently do users need to search across all BIEs vs. browsing within a specific ABIE?
 
@@ -121,27 +134,29 @@ When a persona needs input from another domain:
 
 **Impact if wrong**: May over-index and impact write performance if searches are actually rare.
 
----
+**Answer**: [To be filled when UX Researcher completes workflow analysis]
+```
 
-## For: GeneriCode Format Analyst
+**In your deliverables (e.g., `data-model-design.md`)**:
+```markdown
+## Search Optimization
 
-**Question**: Does GeneriCode export require BIEs to be in a specific order, or can they be arbitrary?
-
-**Why it matters**: Affects whether I need to maintain explicit ordering in the database or can rely on natural key sorting.
-
-**Current assumption**: Alphabetical by Dictionary Entry Name is sufficient.
-
-**Impact if wrong**: Export might not match expected format; may need additional ordering column.
+The database includes full-text search indexes across all BIE fields to support
+cross-ABIE searching. **Note**: This assumption depends on user workflow analysis
+(see SHARED-QUESTIONS.md Q#3). If users primarily browse within ABIEs, we may want
+to adjust indexing strategy to optimize write performance.
 ```
 
 ### The AR Manager's Role in Facilitation
 
-When you (the human) or a future AR Manager session reviews these questions:
+When you (the human) or a future AR Manager session reviews SHARED-QUESTIONS.md:
 
-1. Route questions to appropriate personas (start new sessions)
-2. Update analysis READMEs with cross-references
-3. Document decisions in session logs
-4. Ensure consistency across analyses
+1. **Monitor OPEN questions** - Check regularly for new questions
+2. **Route questions** - Start sessions for appropriate personas
+3. **Update status** - Mark as "🟡 IN PROGRESS" when assigning
+4. **Facilitate answers** - Ensure answers are added and dependent personas notified
+5. **Mark complete** - Update to "🟢 ANSWERED" with links to deliverables
+6. **Archive old questions** - Move answered questions to archive section when work is complete
 
 ## Creating New Personas
 
@@ -243,11 +258,12 @@ When reviewing completed analysis:
 
 ### Handling Cross-Persona Dependencies
 If Persona A needs input from Persona B:
-1. Persona A documents question in `questions-for-other-personas.md`
-2. AR Manager or human reviews question
-3. Start Persona B session with context
+1. Persona A documents question in `analysis/SHARED-QUESTIONS.md` with status 🔴 OPEN
+2. AR Manager or human reviews SHARED-QUESTIONS.md regularly
+3. Update question status to 🟡 IN PROGRESS and start Persona B session with context
 4. Persona B delivers answer in their deliverables
-5. Update Persona A's directory with answer (or start follow-up session)
+5. Persona B updates SHARED-QUESTIONS.md with answer and link to deliverables, status 🟢 ANSWERED
+6. AR Manager notifies Persona A (or starts follow-up session if needed)
 
 ## Best Practices
 
