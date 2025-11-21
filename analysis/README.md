@@ -1,33 +1,55 @@
 # UBL Model Web - Analysis & Research
 
-This directory contains analyses and research conducted during the project planning and implementation phases. Each subdirectory represents a specific investigation topic.
+This directory contains analyses and research conducted during the project planning and implementation phases. Each subdirectory represents a specific investigation topic with a **specialized AI persona**.
+
+## AI Resources (AR) Manager Approach
+
+This project uses an **AR Manager** pattern where each analysis is performed by a specialized AI persona with deep domain expertise. Like a distributed software team, each specialist:
+- Focuses on their domain
+- Works asynchronously with others
+- Documents questions for other personas
+- Produces high-quality, focused deliverables
+
+**Read**: [`AR-MANAGER.md`](./AR-MANAGER.md) for the complete philosophy and guidelines.
 
 ## Purpose
 
 Analysis work is kept separate from production code to:
 - Maintain clear separation between exploration and implementation
-- Enable reproducible research
+- Enable reproducible research with specialized expertise
 - Document decision-making processes
 - Provide reference for future investigations
+- Allow focused, expert-level analysis
 
 ## Structure
 
 Each analysis subdirectory contains:
 - **README.md**: Overview of the analysis and its purpose
-- **prompt.md**: Claude Code session prompt to start/continue the analysis
-- **scripts/**: Any code or tools developed for the analysis (prefer Python)
+- **prompt.md**: Specialized AI persona prompt for this analysis
+- **questions-for-other-personas.md**: Cross-persona communication
+- **scripts/**: Any code or tools developed (prefer Python)
 - **data/**: Results, exports, or findings (may be gitignored)
 - **findings.md**: Conclusions and recommendations
 
+## Key Documents
+
+- **[AR-MANAGER.md](./AR-MANAGER.md)**: Role philosophy and persona management
+- **[_ROLE-BOUNDARIES.md](./_ROLE-BOUNDARIES.md)**: How personas collaborate
+- **[_TEMPLATE_questions-for-other-personas.md](./_TEMPLATE_questions-for-other-personas.md)**: Communication template
+
 ## Analysis Guidelines
 
-When conducting analyses:
+When conducting analyses (as an AI persona):
 
-1. **Isolation**: Do not modify any code or documents outside the analysis directory
-2. **Language**: Prefer Python for scripts - easier for others to understand
-3. **Credentials**: Never commit credentials or secrets; request only when needed
-4. **Reproducibility**: Document steps so analyses can be re-run
-5. **Documentation**: Update README.md with status and findings
+1. **Stay in Your Lane**: Focus on your domain expertise only
+2. **Isolation**: Do not modify any code or documents outside your analysis directory
+3. **Language**: Prefer Python for scripts - easier for others to understand
+4. **Credentials**: Never commit credentials or secrets; request only when needed
+5. **Cross-Persona Questions**: Use `questions-for-other-personas.md` for dependencies
+6. **Reproducibility**: Document steps so analyses can be re-run
+7. **Documentation**: Update README.md with status and findings
+
+**Read** [`_ROLE-BOUNDARIES.md`](./_ROLE-BOUNDARIES.md) before starting any analysis.
 
 ## Analyses
 
