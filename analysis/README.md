@@ -31,17 +31,27 @@ When conducting analyses:
 
 ## Analyses
 
-### In Progress
+### Technical Investigation (Pipeline Understanding)
+
+These analyses help understand the current technical implementation:
 
 - [google-sheets-history](./google-sheets-history/) - Analyzing edit patterns and change history in current Google Sheets
 - [spreadsheet-formulas](./spreadsheet-formulas/) - Understanding formula logic in current spreadsheets
 - [genericode-format](./genericode-format/) - Examining GeneriCode XML format and generation
 
-### Planned
+### Requirements Gathering (Solution Design)
 
-- User workflow analysis
-- Data model design exploration
+These analyses define what the new system should do and how it should work. Each has a specialized AI persona:
+
+- [user-workflows](./user-workflows/) - **UX Researcher** analyzes workflows and designs intuitive experiences
+- [functional-requirements](./functional-requirements/) - **Product Manager** defines complete feature set and priorities
+- [data-model-design](./data-model-design/) - **Database Architect** designs the data model for CCTS representation
+
+### Future Analyses
+
 - Technology stack evaluation
+- Deployment and hosting strategy
+- Security and authentication design
 
 ---
 
