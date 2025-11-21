@@ -26,16 +26,18 @@ Analysis work is kept separate from production code to:
 Each analysis subdirectory contains:
 - **README.md**: Overview of the analysis and its purpose
 - **prompt.md**: Specialized AI persona prompt for this analysis
-- **questions-for-other-personas.md**: Cross-persona communication
 - **scripts/**: Any code or tools developed (prefer Python)
 - **data/**: Results, exports, or findings (may be gitignored)
 - **findings.md**: Conclusions and recommendations
+
+**Cross-persona questions** are handled in the shared `analysis/SHARED-QUESTIONS.md` document (not in individual subdirectories).
 
 ## Key Documents
 
 - **[AR-MANAGER.md](./AR-MANAGER.md)**: Role philosophy and persona management
 - **[_ROLE-BOUNDARIES.md](./_ROLE-BOUNDARIES.md)**: How personas collaborate
-- **[_TEMPLATE_questions-for-other-personas.md](./_TEMPLATE_questions-for-other-personas.md)**: Communication template
+- **[SHARED-QUESTIONS.md](./SHARED-QUESTIONS.md)**: Single source of truth for all cross-persona questions
+- **[_TEMPLATE_questions-for-other-personas.md](./_TEMPLATE_questions-for-other-personas.md)**: ⚠️ DEPRECATED - Use SHARED-QUESTIONS.md instead
 
 ## Analysis Guidelines
 
@@ -45,7 +47,7 @@ When conducting analyses (as an AI persona):
 2. **Isolation**: Do not modify any code or documents outside your analysis directory
 3. **Language**: Prefer Python for scripts - easier for others to understand
 4. **Credentials**: Never commit credentials or secrets; request only when needed
-5. **Cross-Persona Questions**: Use `questions-for-other-personas.md` for dependencies
+5. **Cross-Persona Questions**: Add questions to `analysis/SHARED-QUESTIONS.md` (single source of truth)
 6. **Reproducibility**: Document steps so analyses can be re-run
 7. **Documentation**: Update README.md with status and findings
 
