@@ -42,12 +42,13 @@ Architectural and technical decisions are documented in `.claude/decisions/` wit
 ### Analysis Work
 - **AR Manager**: `analysis/AR-MANAGER.md` - Framework for specialized AI personas
 - **Role Boundaries**: `analysis/_ROLE-BOUNDARIES.md` - How personas collaborate
+- **Shared Questions**: `analysis/SHARED-QUESTIONS.md` - Cross-persona communication hub
 - **Available Personas**: See `analysis/README.md` for complete list
 
 ### Starting an Analysis Session
 ```
 Read `analysis/[directory]/prompt.md` and adopt that persona to complete the analysis.
-Remember to stay in your domain and use questions-for-other-personas.md for dependencies.
+Remember to stay in your domain and use analysis/SHARED-QUESTIONS.md for cross-persona questions.
 ```
 
 ## Domain Understanding
