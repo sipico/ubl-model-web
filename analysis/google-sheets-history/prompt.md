@@ -102,9 +102,16 @@ Analyze the edit history of these three Google Sheets to understand:
 ## Important Constraints
 
 - **Privacy**: Be mindful of user privacy. Focus on patterns, not individuals unless necessary.
-- **Access**: You may need credentials or API access - document requirements clearly.
+- **Isolation**: **DO NOT modify any code or documents outside this analysis directory**. All work must stay within `analysis/google-sheets-history/`.
+- **Language Preference**: Use **Python** for all scripts - it's easier for others to understand and maintain.
+- **Credentials Security**:
+  - **NEVER commit credentials, API keys, or secrets to git**
+  - Only request credentials when actually needed
+  - Store them in session context or use environment variables
+  - Document what credentials are needed in README.md
+  - Ensure `.gitignore` catches credential files
 - **Reproducibility**: Make analysis reproducible so it can be re-run later.
-- **Separation**: Keep all code in this analysis directory, separate from production code.
+- **Access**: You may need credentials or API access - document requirements clearly but handle securely.
 
 ## Expected Deliverables
 

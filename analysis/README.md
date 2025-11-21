@@ -15,9 +15,19 @@ Analysis work is kept separate from production code to:
 Each analysis subdirectory contains:
 - **README.md**: Overview of the analysis and its purpose
 - **prompt.md**: Claude Code session prompt to start/continue the analysis
-- **scripts/**: Any code or tools developed for the analysis
+- **scripts/**: Any code or tools developed for the analysis (prefer Python)
 - **data/**: Results, exports, or findings (may be gitignored)
 - **findings.md**: Conclusions and recommendations
+
+## Analysis Guidelines
+
+When conducting analyses:
+
+1. **Isolation**: Do not modify any code or documents outside the analysis directory
+2. **Language**: Prefer Python for scripts - easier for others to understand
+3. **Credentials**: Never commit credentials or secrets; request only when needed
+4. **Reproducibility**: Document steps so analyses can be re-run
+5. **Documentation**: Update README.md with status and findings
 
 ## Analyses
 
