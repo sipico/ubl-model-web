@@ -35,10 +35,20 @@ Architectural and technical decisions are documented in `.claude/decisions/` wit
 - **No Code Yet**: Currently in analysis phase - no implementation code until requirements are fully documented
 - **Session Documentation**: Conversations are logged after major topics or decisions
 - **Naming Convention**: Lowercase for general files, UPPERCASE for this CLAUDE.md
+- **AR Manager Approach**: Analysis work uses specialized AI personas - see `analysis/AR-MANAGER.md`
 
 ## Quick References
 
-*(To be populated as project evolves)*
+### Analysis Work
+- **AR Manager**: `analysis/AR-MANAGER.md` - Framework for specialized AI personas
+- **Role Boundaries**: `analysis/_ROLE-BOUNDARIES.md` - How personas collaborate
+- **Available Personas**: See `analysis/README.md` for complete list
+
+### Starting an Analysis Session
+```
+Read `analysis/[directory]/prompt.md` and adopt that persona to complete the analysis.
+Remember to stay in your domain and use questions-for-other-personas.md for dependencies.
+```
 
 ## Domain Understanding
 
