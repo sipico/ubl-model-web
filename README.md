@@ -1,4 +1,4 @@
-# Composito
+# 🧩 Composito
 
 A website to visualize, maintain, and serve as the authoritative source for [CCTS](https://docs.oasis-open.org/ubl/csd01-UBL-2.5/UBL-2.5.html#D-4-THE-CCTS-SPECIFICATION-OF-UBL-BUSINESS-INFORMATION-ENTITIES)-based semantic models, starting with [UBL (Universal Business Language)](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=ubl), replacing the current Google Sheets workflow.
 

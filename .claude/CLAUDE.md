@@ -1,4 +1,4 @@
-# Composito
+# 🧩 Composito
 
 ## What This Project Is
 
