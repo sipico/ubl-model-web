@@ -85,6 +85,17 @@ Run these as focused research sessions (use subagents for deep investigation):
 - [Section D.4 - CCTS](https://docs.oasis-open.org/ubl/csd01-UBL-2.5/UBL-2.5.html#D-4-THE-CCTS-SPECIFICATION-OF-UBL-BUSINESS-INFORMATION-ENTITIES)
 - [Publishing Repository](https://github.com/oasis-tcs/ubl/blob/ubl-2.5/README.md)
 
+## GitHub CLI
+
+`gh` is auto-installed via SessionStart hook. The local git remote is a proxy, so always use `--repo`:
+
+```bash
+gh pr create --repo sipico/ubl-model-web --title "..."
+gh pr list --repo sipico/ubl-model-web
+gh issue list --repo sipico/ubl-model-web
+gh api repos/sipico/ubl-model-web/pulls
+```
+
 ## Session History
 
 Conversation logs are in `.claude/sessions/`. External reviews of methodology are in `.claude/second-opinion/`.
