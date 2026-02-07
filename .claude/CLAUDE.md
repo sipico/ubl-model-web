@@ -87,8 +87,6 @@ Edge Scripting + Bunny Database on bunny.net. See `docs/architecture.md` for ful
 
 ## Open Decisions
 
-- Frontend framework (Hono, SvelteKit, or Vite+React)
-- Authentication provider and flow
 - Review/approval workflow design
 
 ## Key References
