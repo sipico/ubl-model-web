@@ -7,13 +7,13 @@ Research and analysis to inform the UBL Model Web design and implementation.
 ### [genericode-format/](./genericode-format/)
 GeneriCode XML format analysis -- column mappings, transformation logic, export implementation guide, and annotated examples. **Key finding**: direct GC generation from a database is feasible, no ODS intermediate needed.
 
+### [spreadsheet-formulas/](./spreadsheet-formulas/)
+Reverse-engineered all formulas for derived columns (A, J, P, S) with exact logic per component type (ABIE, BBIE, ASBIE), abbreviation rules, cross-reference with build config, and TypeScript implementation guide. **Key finding**: 6 formula columns total, no validation rules in the spreadsheets, no cross-sheet references.
+
 ## Not Started
 
 ### [google-sheets-history/](./google-sheets-history/)
 Analyze edit patterns, change frequency, and user behavior in the current Google Sheets to inform UI/UX design, feature priorities, and testing scenarios.
-
-### [spreadsheet-formulas/](./spreadsheet-formulas/)
-Reverse-engineer the formulas for derived columns (A: Component Name, J: Dictionary Entry Name, P: Property Term, S: Data Type) and document validation rules. Needed before data model design.
 
 ### [user-workflows/](./user-workflows/)
 Design editing, review/approval, and navigation workflows for non-IT TC members. Covers adding/modifying BIEs, deprecation, subcommittee review, and TC approval.
