@@ -1,28 +1,21 @@
 # Spreadsheet Formulas Analysis
 
+**Status**: Not started
+
 ## Objective
 
-Examine the formulas used in the Google Sheets to understand how derived values are calculated. This is critical for replicating the logic in the website's data model.
+Reverse-engineer the formulas in the UBL Google Sheets to understand how derived values are calculated. Critical for replicating the logic in the website's data model.
 
 ## Key Questions
 
-1. How are columns A, J, P, S algorithmically derived?
+1. How are derived columns A (Component Name), J (Dictionary Entry Name), P (Property Term), and S (Data Type) calculated?
 2. What other columns use formulas?
 3. What validation rules exist?
 4. Are there cross-sheet references?
-5. How complex are the formulas?
 
-## Status
+## Known Derived Columns (from UBL 2.5 Spec Section D.4)
 
-**Status**: Not Started
-**Priority**: High (needed before data model design)
-
-## Notes
-
-From UBL 2.5 Spec Section D.4, we know these columns are derived:
 - **Column A** (Component Name): Derived from other column values
-- **Column J** (Dictionary Entry Name): Derived, unique key using ISO/IEC 11179
+- **Column J** (Dictionary Entry Name): Unique key using ISO/IEC 11179 naming
 - **Column P** (Property Term): Derived from columns M, N, O
 - **Column S** (Data Type): Derived from other column values
-
-Understanding these formulas is essential for database design and business logic implementation.

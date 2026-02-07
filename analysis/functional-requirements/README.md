@@ -1,34 +1,15 @@
-# Functional Requirements Analysis
+# Functional Requirements
+
+**Status**: Not started
+**Depends on**: User workflows analysis
 
 ## Objective
 
-Define the complete set of functional requirements for the UBL model website based on user needs, workflows, and technical constraints.
-
-## Role Required
-
-**Product Manager & Business Analyst** with experience in:
-- Requirements elicitation and documentation
-- Standards management systems
-- Collaborative editing platforms
-- Complex data modeling tools
+Define the complete feature set for the UBL model website, prioritized into MVP and future releases.
 
 ## Key Questions
 
-1. What features are absolutely necessary (MVP)?
-2. What features are important but can wait (v2)?
+1. What features are absolutely necessary for MVP?
+2. What can wait for later releases?
 3. What non-functional requirements exist (performance, security, accessibility)?
-4. How should features be prioritized?
-5. What are acceptance criteria for each feature?
-
-## Status
-
-**Status**: Not Started
-**Priority**: High (drives development roadmap)
-
-## Dependencies
-
-Should be completed after user workflows analysis.
-
-## Getting Started
-
-Use the [prompt.md](./prompt.md) file to start a new Claude Code session with the appropriate persona.
+4. What are acceptance criteria for each feature?
