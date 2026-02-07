@@ -81,11 +81,14 @@ Run these as focused research sessions (use subagents for deep investigation):
 3. **Functional Requirements** -- define MVP features and priorities
 4. **Data Model Design** -- database schema for CCTS representation, versioning, and GC export
 
+## Architecture
+
+Edge Scripting + Bunny Database on bunny.net. See `docs/architecture.md` for full details and IaC boundary.
+
 ## Open Decisions
 
-- Technology stack
-- Authentication and permissions model
-- Deployment and hosting
+- Frontend framework (Hono, SvelteKit, or Vite+React)
+- Authentication provider and flow
 - Review/approval workflow design
 
 ## Key References
