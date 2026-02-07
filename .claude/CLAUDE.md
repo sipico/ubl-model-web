@@ -1,70 +1,37 @@
-# UBL Model Web - Claude Reference
+# UBL Model Web
 
-**Project**: UBL Model Website
-**Repository**: sipico/ubl-model-web
-**Branch**: claude/ubl-model-website-01K4cNV8XJiShKAHQTWreiBr
+## What This Project Is
 
-## Project Vision
+A website to replace Google Sheets as the authoritative source for the **UBL (Universal Business Language)** model -- an OASIS XML standard for business document exchange ("HTML for business documents").
 
-A comprehensive website to:
-- Visualize the UBL (Universal Business Language) model
-- Maintain and edit the UBL model
-- Serve as the authoritative source for GC files that form the basis for UBL release packages
+The website will:
+1. **Visualize** the UBL data model and relationships between entities
+2. **Maintain/edit** the model with change tracking and approval workflows
+3. **Export GeneriCode (GC) XML files** for the existing OASIS publishing pipeline
 
 ## Current Status
 
-🚧 **Discovery Phase** - Analyzing requirements and documenting desired solution before implementation
+Analysis phase -- no implementation code yet. One analysis complete (GeneriCode format), five remaining.
 
-## Project Approach
+## Domain: UBL and CCTS
 
-1. **Analysis First** - Understanding the domain, current state, and requirements
-2. **Document the Vision** - Define what the ideal solution should be
-3. **Design Architecture** - Work backwards from requirements to implementation
-4. **Implement** - Build the solution based on documented decisions
+UBL is based on UN/CEFACT CCTS 2.01 (Core Components Technical Specification) with ISO/IEC 11179 naming conventions. Currently at version 2.4, working towards 2.5.
 
-## Key Documentation
-
-### Session Logs
-All conversation history is maintained in `.claude/sessions/` with timestamps and key decisions.
-
-### Decision Records
-Architectural and technical decisions are documented in `.claude/decisions/` with rationale.
-
-## Important Conventions
-
-- **No Code Yet**: Currently in analysis phase - no implementation code until requirements are fully documented
-- **Session Documentation**: Conversations are logged after major topics or decisions
-- **Naming Convention**: Lowercase for general files, UPPERCASE for this CLAUDE.md
-- **AR Manager Approach**: Analysis work uses specialized AI personas - see `analysis/AR-MANAGER.md`
-
-## Quick References
-
-### Analysis Work
-- **AR Manager**: `analysis/AR-MANAGER.md` - Framework for specialized AI personas
-- **Role Boundaries**: `analysis/_ROLE-BOUNDARIES.md` - How personas collaborate
-- **Shared Questions**: `analysis/SHARED-QUESTIONS.md` - Cross-persona communication hub
-- **Available Personas**: See `analysis/README.md` for complete list
-
-### Starting an Analysis Session
-```
-Read `analysis/[directory]/prompt.md` and adopt that persona to complete the analysis.
-Remember to stay in your domain and use analysis/SHARED-QUESTIONS.md for cross-persona questions.
-```
-
-## Domain Understanding
-
-### What is UBL?
-Universal Business Language (OASIS standard) - "HTML for business documents"
-- Royalty-free XML standard for business document exchange
-- Based on UN/CEFACT CCTS 2.01 (Core Components Technical Specification)
-- Uses ISO/IEC 11179 naming conventions
-- Currently at version 2.4, working towards 2.5
+### Business Information Entities (BIEs)
+- **ABIE** (Aggregate BIE): Complex objects -- Address, Party, Invoice
+- **BBIE** (Basic BIE): Simple elements -- StreetName, Amount
+- **ASBIE** (Association BIE): Relationships between ABIEs
 
 ### Current Source of Truth
-Three Google Sheets maintained by TC:
-- **Library**: https://docs.google.com/spreadsheets/d/18o1YqjHWUw0-s8mb3ja4i99obOUhs-4zpgso6RZrGaY
-- **Documents**: https://docs.google.com/spreadsheets/d/1024Th-Uj8cqliNEJc-3pDOR7DxAAW7gCG4e-pbtarsg
-- **Signatures**: https://docs.google.com/spreadsheets/d/1T6z2NZ4mc69YllZOXE5TnT5Ey-FlVtaXN1oQ4AIMp7g
+Three Google Sheets maintained by the TC:
+- **Library**: Reusable components -- https://docs.google.com/spreadsheets/d/18o1YqjHWUw0-s8mb3ja4i99obOUhs-4zpgso6RZrGaY
+- **Documents**: Document types -- https://docs.google.com/spreadsheets/d/1024Th-Uj8cqliNEJc-3pDOR7DxAAW7gCG4e-pbtarsg
+- **Signatures**: Digital signature extensions -- https://docs.google.com/spreadsheets/d/1T6z2NZ4mc69YllZOXE5TnT5Ey-FlVtaXN1oQ4AIMp7g
+
+### Spreadsheet Columns (26 per sheet, Library/Documents)
+A: Component Name (derived), B: Subset Cardinality, C: Cardinality, D: Endorsed Cardinality, E: Endorsed Cardinality Rationale, F: Definition, G: Deprecated Definition, H: Alternative Business Terms, I: Examples, J: Dictionary Entry Name (derived, primary key, ISO/IEC 11179), K: Object Class Qualifier, L: Object Class, M: Property Term Qualifier, N: Property Term Possessive Noun, O: Property Term Primary Noun, P: Property Term (derived), Q: Representation Term, R: Data Type Qualifier, S: Data Type (derived), T: Associated Object Class Qualifier, U: Associated Object Class, V: Component Type (ABIE/BBIE/ASBIE/MA), W: UN/TDED Code, X: Current Version, Y: Last Changed, Z: Editor's Notes
+
+Derived columns A, J, P, S are algorithmically generated from other column values.
 
 ### Publishing Pipeline
 Google Sheets → ODS → GeneriCode (GC) XML → XSD/JSON Schemas → Documentation
@@ -73,24 +40,62 @@ Google Sheets → ODS → GeneriCode (GC) XML → XSD/JSON Schemas → Documenta
 
 ### The Problem
 - Difficult to track changes in Google Sheets
-- Hard to coordinate among multiple TC editors
-- No visualization of model structure
+- Hard to coordinate among TC editors
 - No formal approval workflow
+- No visualization of model structure
+- TC members are non-IT business experts who need a simple interface
 
-### The Solution Vision
-Website that:
-1. Replaces Google Sheets as authoritative source
-2. Provides change tracking and version control
-3. Visualizes model structure and relationships
-4. Helps TC members edit and maintain the model
-5. Exports GeneriCode (GC) files for existing publishing pipeline
+### Users
+1. **TC Members** -- all can make changes (not just designated editors)
+2. **Subcommittees** -- need workspace for internal review before TC submission
+3. **Public** -- read-only access to view and explore the model
 
-## Open Questions
+## Completed Analysis
 
-- Who are all the intended users (editors, viewers, implementers)?
-- What technology stack should be used?
-- How to handle authentication and permissions?
-- Deployment strategy and hosting?
+### GeneriCode Format (Complete)
+Full analysis in `analysis/genericode-format/`:
+- `columns-and-structure.md` -- all column mappings and GC XML structure
+- `transformation-and-export.md` -- export logic for full, endorsed, and signature models
+- `implementation-guide.md` -- TypeScript/Node.js code examples
+- `data/minimal-example.gc.xml` -- annotated example
 
----
-*Last Updated: 2025-11-21*
+Key finding: Direct GC generation from a website database is feasible -- ODS intermediate format can be bypassed.
+
+## Remaining Analysis Tasks
+
+Run these as focused research sessions (use subagents for deep investigation):
+
+1. **Google Sheets History** -- analyze edit patterns, change frequency, user behavior
+2. **Spreadsheet Formulas** -- reverse-engineer derived column logic (A, J, P, S)
+3. **User Workflows** -- design editing, review/approval, and navigation workflows
+4. **Functional Requirements** -- define MVP features and priorities
+5. **Data Model Design** -- database schema for CCTS representation, versioning, and GC export
+
+## Open Decisions
+
+- Technology stack
+- Authentication and permissions model
+- Deployment and hosting
+- Review/approval workflow design
+
+## Key References
+
+- [UBL TC Homepage](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=ubl)
+- [UBL 2.5 Specification](https://docs.oasis-open.org/ubl/csd01-UBL-2.5/UBL-2.5.html)
+- [Section D.4 - CCTS](https://docs.oasis-open.org/ubl/csd01-UBL-2.5/UBL-2.5.html#D-4-THE-CCTS-SPECIFICATION-OF-UBL-BUSINESS-INFORMATION-ENTITIES)
+- [Publishing Repository](https://github.com/oasis-tcs/ubl/blob/ubl-2.5/README.md)
+
+## GitHub CLI
+
+`gh` is auto-installed via SessionStart hook. The local git remote is a proxy, so always use `--repo`:
+
+```bash
+gh pr create --repo sipico/ubl-model-web --title "..."
+gh pr list --repo sipico/ubl-model-web
+gh issue list --repo sipico/ubl-model-web
+gh api repos/sipico/ubl-model-web/pulls
+```
+
+## Session History
+
+Conversation logs are in `.claude/sessions/`. External reviews of methodology are in `.claude/second-opinion/`.

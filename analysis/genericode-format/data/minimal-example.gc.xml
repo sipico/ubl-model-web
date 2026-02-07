@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gc:CodeList
+  xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://docs.oasis-open.org/codelist/ns/genericode/1.0/ genericode.xsd">
+
+  <!--
+    MINIMAL EXAMPLE GENERICODE FILE
+
+    This is a minimal but complete GeneriCode file demonstrating the structure.
+    It contains just 3 entities from an "Address" model for illustration.
+  -->
+
+  <Identification>
+    <ShortName>UBL-Example</ShortName>
+    <LongName xml:lang="en">Example UBL GeneriCode File</LongName>
+    <Version>1.0</Version>
+    <CanonicalUri>urn:example:ubl:BIE</CanonicalUri>
+    <CanonicalVersionUri>urn:example:ubl:BIE:1.0</CanonicalVersionUri>
+    <LocationUri>https://example.com/UBL-Example.gc</LocationUri>
+    <Agency>
+      <LongName xml:lang="en">Example Organization</LongName>
+      <Identifier>EXAMPLE</Identifier>
+    </Agency>
+  </Identification>
+
+  <ColumnSet>
+    <!-- Core required columns -->
+    <Column Id="model-name" Use="required">
+      <ShortName>ModelName</ShortName>
+      <LongName>Model Name</LongName>
+      <Data Type="string"/>
+    </Column>
+
+    <Column Id="component-type" Use="required">
+      <ShortName>ComponentType</ShortName>
+      <LongName>Component Type</LongName>
+      <Data Type="string"/>
+    </Column>
+
+    <Column Id="dictionary-entry-name" Use="required">
+      <ShortName>DictionaryEntryName</ShortName>
+      <LongName>Dictionary Entry Name</LongName>
+      <Data Type="string"/>
+    </Column>
+
+    <Column Id="component-name" Use="required">
+      <ShortName>ComponentName</ShortName>
+      <LongName>Component Name</LongName>
+      <Data Type="string"/>
+    </Column>
+
+    <Column Id="definition" Use="required">
+      <ShortName>Definition</ShortName>
+      <LongName>Definition</LongName>
+      <Data Type="string"/>
+    </Column>
+
+    <Column Id="cardinality" Use="required">
+      <ShortName>Cardinality</ShortName>
+      <LongName>Cardinality</LongName>
+      <Data Type="string"/>
+    </Column>
+
+    <!-- CCTS naming components -->
+    <Column Id="object-class-term" Use="optional">
+      <ShortName>ObjectClassTerm</ShortName>
+      <LongName>Object Class Term</LongName>
+      <Data Type="string"/>
+    </Column>
+
+    <Column Id="property-term" Use="optional">
+      <ShortName>PropertyTerm</ShortName>
+      <LongName>Property Term</LongName>
+      <Data Type="string"/>
+    </Column>
+
+    <Column Id="representation-term" Use="optional">
+      <ShortName>RepresentationTerm</ShortName>
+      <LongName>Representation Term</LongName>
+      <Data Type="string"/>
+    </Column>
+
+    <!-- Primary key constraint -->
+    <Key Id="dictionary-entry-name-key">
+      <ShortName>DictionaryEntryNameKey</ShortName>
+      <LongName>The unique name for a dictionary entry</LongName>
+      <ColumnRef Ref="dictionary-entry-name"/>
+    </Key>
+  </ColumnSet>
+
+  <SimpleCodeList>
+
+    <!-- Row 1: ABIE (Aggregate Business Information Entity) -->
+    <Row>
+      <Value ColumnRef="model-name">
+        <SimpleValue>Address</SimpleValue>
+      </Value>
+      <Value ColumnRef="component-type">
+        <SimpleValue>ABIE</SimpleValue>
+      </Value>
+      <Value ColumnRef="dictionary-entry-name">
+        <SimpleValue>Address. Details</SimpleValue>
+      </Value>
+      <Value ColumnRef="component-name">
+        <SimpleValue>Address</SimpleValue>
+      </Value>
+      <Value ColumnRef="definition">
+        <SimpleValue>A class to define common information related to an address.</SimpleValue>
+      </Value>
+      <Value ColumnRef="cardinality">
+        <SimpleValue>1..1</SimpleValue>
+      </Value>
+      <Value ColumnRef="object-class-term">
+        <SimpleValue>Address</SimpleValue>
+      </Value>
+      <!-- Note: ABIEs don't have property-term or representation-term -->
+    </Row>
+
+    <!-- Row 2: BBIE (Basic Business Information Entity) -->
+    <Row>
+      <Value ColumnRef="model-name">
+        <SimpleValue>Address</SimpleValue>
+      </Value>
+      <Value ColumnRef="component-type">
+        <SimpleValue>BBIE</SimpleValue>
+      </Value>
+      <Value ColumnRef="dictionary-entry-name">
+        <SimpleValue>Address. City Name. Text</SimpleValue>
+      </Value>
+      <Value ColumnRef="component-name">
+        <SimpleValue>CityName</SimpleValue>
+      </Value>
+      <Value ColumnRef="definition">
+        <SimpleValue>The name of the city, town, or village in which this address is located.</SimpleValue>
+      </Value>
+      <Value ColumnRef="cardinality">
+        <SimpleValue>0..1</SimpleValue>
+      </Value>
+      <Value ColumnRef="object-class-term">
+        <SimpleValue>Address</SimpleValue>
+      </Value>
+      <Value ColumnRef="property-term">
+        <SimpleValue>City Name</SimpleValue>
+      </Value>
+      <Value ColumnRef="representation-term">
+        <SimpleValue>Text</SimpleValue>
+      </Value>
+    </Row>
+
+    <!-- Row 3: ASBIE (Association Business Information Entity) -->
+    <Row>
+      <Value ColumnRef="model-name">
+        <SimpleValue>Address</SimpleValue>
+      </Value>
+      <Value ColumnRef="component-type">
+        <SimpleValue>ASBIE</SimpleValue>
+      </Value>
+      <Value ColumnRef="dictionary-entry-name">
+        <SimpleValue>Address. Country</SimpleValue>
+      </Value>
+      <Value ColumnRef="component-name">
+        <SimpleValue>Country</SimpleValue>
+      </Value>
+      <Value ColumnRef="definition">
+        <SimpleValue>The country in which this address is located.</SimpleValue>
+      </Value>
+      <Value ColumnRef="cardinality">
+        <SimpleValue>0..1</SimpleValue>
+      </Value>
+      <Value ColumnRef="object-class-term">
+        <SimpleValue>Address</SimpleValue>
+      </Value>
+      <Value ColumnRef="property-term">
+        <SimpleValue>Country</SimpleValue>
+      </Value>
+      <!-- Note: ASBIEs reference another ABIE, no representation-term -->
+    </Row>
+
+  </SimpleCodeList>
+
+</gc:CodeList>
