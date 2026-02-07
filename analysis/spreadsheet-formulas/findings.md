@@ -780,6 +780,112 @@ function deriveBbieComponentName(
 
 ---
 
+## Column Classification: Input Types and Value Distributions
+
+Every cell across all 3 spreadsheets (3,183 Library rows, 2,671 Documents rows
+across 101 sheets, and 5 Signatures rows) was analyzed to classify each column
+by its actual usage pattern. This determines which fields need free-text input,
+which should be dropdowns, and which are fully automatic.
+
+### Auto-Derived — No User Input (5 columns)
+
+These columns are entirely computed by formulas. Users never edit them.
+
+| Col | Name | Derived From |
+|-----|------|-------------|
+| **A** | Component Name | K, L, M, N, O, Q (varies by type) |
+| **J** | Dictionary Entry Name | K, L, M, P, Q (varies by type) |
+| **P** | Property Term | N+O (BBIE) or T+U (ASBIE) |
+| **S** | Data Type | R+Q (BBIE only) |
+| **Q** | Representation Term | = P (ASBIE only; manual for BBIEs) |
+
+### Pick From Fixed Set — Dropdown (4 columns)
+
+These columns have a small, well-defined set of valid values.
+
+| Col | Name | Valid Values | Notes |
+|-----|------|-------------|-------|
+| **V** | Component Type | `ABIE`, `BBIE`, `ASBIE` | 3 options (+ `END` marker in sheets) |
+| **C** | Cardinality | `0..1`, `1`, `0..n`, `1..n` | 4 options. `1` means `1..1` |
+| **D** | Endorsed Cardinality | `0`, `0..0`, `0..1` + the C values | Rarely used: 23 of 3,183 Library rows, 80 of 2,671 Documents rows |
+| **X** | Current Version | `2.0`, `2.1`, `2.2`, `2.3`, `2.4`, `2.5` | 6 values; always the UBL version when the BIE was introduced |
+
+### Pick From Constrained Vocabulary — Searchable Dropdown (4 columns)
+
+These columns draw from a larger but still bounded set of known values.
+
+| Col | Name | Library Unique | Documents Unique | Nature |
+|-----|------|---------------|-----------------|--------|
+| **Q** | Representation Term (BBIE) | 20 standard types | 15 types | Must match CCTS type list: Amount, Binary Object, Code, Date, Date Time, Graphic, Identifier, Indicator, Measure, Name, Numeric, Percent, Picture, Quantity, Rate, Sound, Text, Time, Value, Video |
+| **O** | Primary Noun | 192 | 33 | Heavily concentrated: Code (18%), Identifier (14%), Amount (6%), Indicator (6%). Documents use far fewer because they reference Library components |
+| **R** | Data Type Qualifier | 19 | 4 | Rarely used: 27 of 1,781 Library BBIEs, 68 of 1,413 Documents BBIEs. Values like "Currency", "Language", "Line Status" |
+| **L** | Object Class | 310 (Library) | 101 (Documents) | Not free-text — picks from existing ABIEs. Each BBIE/ASBIE inherits this from its parent ABIE |
+
+### Pick From Existing Entities — Reference Selector (1 column)
+
+| Col | Name | Library Unique | Documents Unique | Nature |
+|-----|------|---------------|-----------------|--------|
+| **U** | Associated Object Class | 256 | 114 | ASBIE only. References an existing ABIE name. Top values: Party (122x), Period (88x), Document Reference (79x) |
+
+### Conventional Terms — Autocomplete With History (2 columns)
+
+These have many unique values but follow naming conventions. An autocomplete
+drawing from previously-used values would work well.
+
+| Col | Name | Library Unique | Docs Unique | Populated | Top Values |
+|-----|------|---------------|-------------|-----------|------------|
+| **M** | Prop. Term Qualifier | 631 | 207 | 38% (Lib), 33% (Doc) | "Maximum", "Minimum", "Additional", "Total", "Copy", "Receiver" |
+| **N** | Possessive Noun | 564 | 96 | 29% (Lib), 34% (Doc) | "Line Extension", "Issue", "Response", "UBL Version" |
+
+### Free Text — Editor Input (5 columns)
+
+These require genuine human-authored content.
+
+| Col | Name | Populated | Avg Len | Max Len | Notes |
+|-----|------|-----------|---------|---------|-------|
+| **F** | Definition | 99.9% | 70 (Lib), 73 (Doc) | 445 (Lib), 1025 (Doc) | Almost always required. ~3,000 unique definitions in Library alone |
+| **E** | Endorsed Card. Rationale | <1% (Lib), 3% (Doc) | 82, 71 | 183, 249 | Only when D is set. Explains why cardinality changed |
+| **H** | Alt. Business Terms | 5% (Lib), 3% (Doc) | 24, 29 | 94, 141 | Optional synonyms |
+| **I** | Examples | 11% (Lib), 12% (Doc) | 27, 11 | 735, 117 | Illustrative values |
+| **Z** | Editor's Notes | 12% (Lib), 4% (Doc) | 42, 12 | 501, 70 | Internal notes, JIRA ticket refs |
+| **G** | Deprecated Definition | <0.1% | 71 | 71 (Lib), 150 (Doc) | Only 2 rows in Library, 4 in Documents |
+
+### Never Populated (4 columns)
+
+These columns exist in the structure but have no data in any row of any sheet.
+
+| Col | Name | Notes |
+|-----|------|-------|
+| **B** | Subset Cardinality | Reserved for subsetting; never used |
+| **K** | Object Class Qualifier | Formulas support it; no data exists |
+| **T** | Assoc. Object Class Qualifier | Formulas support it; no data exists |
+| **Y** | Last Changed | Dropped from GC export too |
+
+### Summary: What a User Actually Edits
+
+When **adding a new BBIE** (the most common operation), the user provides:
+
+1. **V** — Component Type → pick `BBIE` (or implied by context)
+2. **L** — Object Class → inherited from parent ABIE (automatic)
+3. **M** — Property Term Qualifier → optional, autocomplete (38% of BBIEs)
+4. **N** — Possessive Noun → optional, autocomplete (29% of BBIEs)
+5. **O** — Primary Noun → searchable dropdown of ~30 standard terms
+6. **Q** — Representation Term → dropdown of ~20 CCTS types
+7. **C** — Cardinality → dropdown of 4 options
+8. **F** — Definition → free text (required)
+9. **R** — Data Type Qualifier → rarely needed (1.5% of BBIEs)
+
+Everything else is auto-derived (A, J, P, S), optional metadata (H, I, W, Z),
+or never used (B, K, T, Y).
+
+**Adding a new ASBIE** is even simpler: pick L (inherited), optionally M
+(qualifier), U (associated ABIE from dropdown), C (cardinality), and write F
+(definition). Columns A, J, P, Q, S are all auto-derived.
+
+**Adding a new ABIE**: just L (name) and F (definition). Two fields.
+
+---
+
 ## Appendix: Row Counts
 
 | Spreadsheet | Sheet | Data Rows | ABIEs | BBIEs | ASBIEs |
